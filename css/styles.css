@@ -21,32 +21,101 @@ body {
   padding: 20px;
 }
 
+header {
+  text-align: right;
+  margin-bottom: 20px;
+  font-size: 0.8em;
+  color: #666;
+}
+
+header a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
 #controls {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 20px;
 }
 
-button {
+#search-container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#search-input {
+  flex-grow: 1;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   font-family: "Poppins", sans-serif;
-  font-weight: 500; /* Medium gewicht voor knoppen */
+}
+
+#search-button {
+  padding: 8px 15px;
+  background-color: #98fb98;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+#search-button:hover {
+  background-color: #7cfc00;
+}
+
+#sort-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#sort-newest,
+#sort-oldest {
+  flex-basis: 48%; /* Dit zorgt ervoor dat de knoppen niet helemaal tot de rand gaan */
+  padding: 8px 0;
+  background-color: #98fb98;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+#sort-newest:hover,
+#sort-oldest:hover {
+  background-color: #7cfc00;
+}
+
+#chat-container {
+  margin-bottom: 20px;
+}
+
+#navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+#prev-page,
+#next-page {
   padding: 10px 15px;
   background-color: #98fb98;
   color: #333;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
-button:hover {
+#prev-page:hover,
+#next-page:hover {
   background-color: #7cfc00;
-}
-
-#chat-container {
-  background-color: #e6e6e6;
-  border-radius: 8px;
-  padding: 10px;
 }
 
 .message {
@@ -57,16 +126,15 @@ button:hover {
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
-  transition: all 0.3s ease; /* Soepele overgang voor alle veranderingen */
-  position: relative; /* Nodig voor het z-index effect */
-  z-index: 1; /* Standaard z-index */
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .message:hover {
-  transform: translateY(-3px) scale(1.02); /* Beweeg iets omhoog en vergroot licht */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Grotere schaduw voor 'verheven' effect */
-  z-index: 2; /* Breng het bericht naar voren */
-  background-color: rgba(255, 255, 255, 0.9); /* Licht de achtergrond op */
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 .message.gerard {
@@ -74,15 +142,16 @@ button:hover {
 }
 
 .message.gerard:hover {
-  background-color: #e5fad4; /* Lichtere versie van de originele kleur */
+  background-color: #e5fad4;
 }
 
 .message.nagelhout {
   background-color: #ffffff;
+  margin-left: 1em; /* Dit verschuift de berichten van Nagelhout 1em naar rechts */
 }
 
 .message.nagelhout:hover {
-  background-color: #f8f8f8; /* Lichtere versie van de originele kleur */
+  background-color: #f8f8f8;
 }
 
 .sender {
@@ -102,52 +171,46 @@ button:hover {
   color: #666;
   font-size: 0.8em;
   margin-bottom: 5px;
-  font-weight: 300; /* Licht gewicht voor de datum/tijd */
+  font-weight: 300;
 }
 
 .content {
   margin-top: 5px;
-  font-weight: 400; /* Regular gewicht voor de berichtinhoud */
+  font-weight: 400;
   color: #333; /* Donkergrijs voor de inhoud, goed leesbaar op beide achtergronden */
 }
 
-.message .content {
-  margin-top: 5px;
-  white-space: pre-wrap;
-}
-
-.message .content a {
+.content a {
   color: inherit; /* Gebruik dezelfde kleur als de omringende tekst */
   text-decoration: none; /* Verwijder de standaard onderstreping */
   border-bottom: 1px dotted currentColor; /* Voeg een subtiele stippellijn toe onder de link */
-  padding-bottom: 1px; /* Kleine ruimte onder de tekst voor de stippellijn */
   transition: border-bottom 0.3s ease, opacity 0.3s ease; /* Soepele overgang voor hover effect */
 }
 
-.message .content a:hover {
-  border-bottom: 1px solid currentColor; /* Verander naar een doorgetrokken lijn bij hover */
-  opacity: 0.7; /* Maak de link iets lichter bij hover */
+.content a:hover {
+  border-bottom: 1px solid currentColor; /* Maak de lijn doorgetrokken bij hover */
+  opacity: 0.8; /* Maak de link iets lichter bij hover */
 }
 
-/* Behoud de word-break voor lange URLs */
-.message .content a {
-  word-break: break-all;
+/* Als de link binnen een gemarkeerde zoekterm valt, pas de stijl aan */
+.highlight a {
+  border-bottom: none; /* Verwijder de stippellijn binnen gemarkeerde tekst */
+}
+
+.highlight a:hover {
+  opacity: 1; /* Behoud volledige opaciteit binnen gemarkeerde tekst */
+  text-decoration: underline; /* Voeg onderstreping toe bij hover binnen gemarkeerde tekst */
 }
 
 @media (max-width: 768px) {
-  #app-container {
-    width: 95%;
-    margin: 20px auto;
-    padding: 10px;
-  }
-
-  #controls {
+  #sort-container {
     flex-direction: column;
-    align-items: stretch;
   }
 
-  button {
+  #sort-newest,
+  #sort-oldest {
     margin-bottom: 10px;
+    flex-basis: auto;
   }
 
   .message {
@@ -159,30 +222,13 @@ button:hover {
   }
 }
 
+#search-input::placeholder {
+  color: #999; /* Lichtere kleur voor de placeholder */
+  font-style: italic; /* Maak de tekst cursief voor extra nadruk */
+}
+
 /* Voeg dit toe aan je bestaande CSS */
-#load-previous,
-#load-more {
-  display: none;
-}
-
-#navigation {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-#prev-page,
-#next-page {
-  padding: 10px 15px;
-  background-color: #98fb98;
-  color: #333;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-#prev-page:hover,
-#next-page:hover {
-  background-color: #7cfc00;
+.highlight {
+  background-color: yellow; /* Of een andere kleur die je wilt gebruiken */
+  font-weight: bold; /* Optioneel: maak de gemarkeerde tekst vetgedrukt */
 }

@@ -4,17 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WhatsApp Chat Viewer</title>
-    <link rel="stylesheet" href="css/styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <div id="app-container">
+      <header>
+        <small
+          >met dank aan
+          <a href="https://cursor.sh/" target="_blank" rel="noopener noreferrer"
+            >Cursor</a
+          ></small
+        >
+      </header>
       <div id="controls">
-        <button id="sort-newest">Nieuwste eerst</button>
-        <button id="sort-oldest">Oudste eerst</button>
+        <div id="search-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Zoek in berichten (hoofdlettergevoelig)..."
+          />
+          <button id="search-button">Zoek</button>
+          <!-- Enkele knop voor zoeken/wissen -->
+        </div>
+        <div id="sort-container">
+          <button id="sort-newest">Nieuwste eerst</button>
+          <button id="sort-oldest">Oudste eerst</button>
+        </div>
       </div>
       <div id="chat-container"></div>
       <div id="navigation">
