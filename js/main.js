@@ -103,38 +103,53 @@ function displayMessages(messages) {
 }
 
 function setupEventListeners() {
-  document
-    .getElementById("search-button")
-    .addEventListener("click", performSearch); // Voeg de event listener toe
-  document.getElementById("sort-newest").addEventListener("click", () => {
-    currentSort = "newest";
-    currentPage = 0;
-    sortAndDisplayMessages();
-  });
+  const searchButton = document.getElementById("search-button");
+  const sortNewestButton = document.getElementById("sort-newest");
+  const sortOldestButton = document.getElementById("sort-oldest");
+  const prevButton = document.getElementById("prev-page");
+  const nextButton = document.getElementById("next-page");
+  const clearButton = document.getElementById("clear-button");
+  const darkModeButton = document.getElementById("dark-mode-button");
 
-  document.getElementById("sort-oldest").addEventListener("click", () => {
-    currentSort = "oldest";
-    currentPage = 0;
-    sortAndDisplayMessages();
-  });
-
-  document.getElementById("prev-page").addEventListener("click", () => {
-    if (currentPage > 0) {
-      currentPage--;
+  if (searchButton) {
+    searchButton.addEventListener("click", performSearch);
+  }
+  if (sortNewestButton) {
+    sortNewestButton.addEventListener("click", () => {
+      currentSort = "newest";
+      currentPage = 0;
       sortAndDisplayMessages();
-    }
-  });
-
-  document.getElementById("next-page").addEventListener("click", () => {
-    if ((currentPage + 1) * messagesPerPage < chatMessages.length) {
-      currentPage++;
+    });
+  }
+  if (sortOldestButton) {
+    sortOldestButton.addEventListener("click", () => {
+      currentSort = "oldest";
+      currentPage = 0;
       sortAndDisplayMessages();
-    }
-  });
-
-  document
-    .getElementById("clear-button")
-    .addEventListener("click", clearSearch); // Voeg de event listener toe
+    });
+  }
+  if (prevButton) {
+    prevButton.addEventListener("click", () => {
+      if (currentPage > 0) {
+        currentPage--;
+        sortAndDisplayMessages();
+      }
+    });
+  }
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      if ((currentPage + 1) * messagesPerPage < chatMessages.length) {
+        currentPage++;
+        sortAndDisplayMessages();
+      }
+    });
+  }
+  if (clearButton) {
+    clearButton.addEventListener("click", clearSearch);
+  }
+  if (darkModeButton) {
+    darkModeButton.addEventListener("click", toggleDarkMode);
+  }
 
   window.addEventListener("resize", () => {
     const oldMessagesPerPage = messagesPerPage;
@@ -178,4 +193,78 @@ document.addEventListener("DOMContentLoaded", () => {
   checkMobile();
   loadChatData();
   setupEventListeners();
+});
+
+// Functie om de donkere modus in te schakelen
+function toggleDarkMode() {
+  const body = document.body;
+  const appContainer = document.getElementById("app-container");
+  const buttons = document.querySelectorAll("button");
+  const darkModeButton = document.getElementById("dark-mode-button");
+
+  // Toggle de dark-mode klasse
+  body.classList.toggle("dark-mode");
+  appContainer.classList.toggle("dark-mode");
+
+  // Toggle de dark-mode klasse voor knoppen
+  buttons.forEach((button) => {
+    button.classList.toggle("dark-mode");
+  });
+
+  // Verander het icoon op basis van de modus
+  if (body.classList.contains("dark-mode")) {
+    darkModeButton.innerHTML = '<i class="fas fa-moon"></i> Lichte Modus'; // Maanicoon voor lichte modus
+  } else {
+    darkModeButton.innerHTML = '<i class="fas fa-sun"></i> Donkere Modus'; // Zonnetje voor donkere modus
+  }
+}
+
+function createStars() {
+  const starrySky = document.getElementById("starry-sky");
+  const numberOfStars = 100; // Aantal sterren
+
+  for (let i = 0; i < numberOfStars; i++) {
+    const star = document.createElement("div");
+    star.classList.add("star");
+
+    // Random positie en grootte
+    const size = Math.random() * 3 + 1; // Ster grootte tussen 1 en 4
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.left = `${Math.random() * 100}vw`; // Random horizontale positie
+    star.style.top = `${Math.random() * 100}vh`; // Random verticale positie
+    star.style.animationDuration = `${Math.random() * 1 + 0.5}s`; // Random twinkle snelheid
+
+    starrySky.appendChild(star);
+  }
+}
+
+function createFallingStar() {
+  const starrySky = document.getElementById("starry-sky");
+  const fallingStar = document.createElement("div");
+  fallingStar.classList.add("falling-star");
+
+  // Random horizontale positie
+  const randomX = Math.random() * 100; // Willekeurige horizontale positie
+  fallingStar.style.left = `${randomX}vw`;
+  fallingStar.style.top = `0`; // Begin bovenaan
+
+  // Voeg een schuine beweging toe door een random waarde voor translateX toe te voegen
+  const randomAngle = Math.random() * 40 - 20; // Willekeurige schuine hoek tussen -20 en 20 graden
+  fallingStar.style.transform = `translateX(${randomAngle}px)`; // Schuine startpositie
+
+  starrySky.appendChild(fallingStar);
+
+  // Verwijder de vallende ster na de animatie
+  fallingStar.addEventListener("animationend", () => {
+    fallingStar.remove();
+  });
+}
+
+// Maak sterren aan bij het laden van de pagina
+document.addEventListener("DOMContentLoaded", () => {
+  createStars();
+
+  // Maak elke 2 seconden een vallende ster
+  setInterval(createFallingStar, 2000);
 });

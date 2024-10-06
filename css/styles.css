@@ -1,24 +1,65 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+}
+
 body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background: linear-gradient(45deg, #8e9eab, #eef2f3);
   display: flex;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
   font-weight: 300; /* Licht gewicht voor de algemene tekst */
+  background-color: #f0f0f0;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Donkere modus */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
 }
 
 #app-container {
-  width: 30%;
-  min-width: 300px;
-  max-width: 500px;
-  margin: 40px auto;
-  background-color: rgba(255, 255, 255, 0.8);
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#app-container.dark-mode {
+  background-color: rgba(
+    18,
+    18,
+    18,
+    0.8
+  ); /* Semi-transparante donkere achtergrond voor de container */
+}
+
+body.dark-mode #app-container {
+  background: rgba(30, 30, 30, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 header {
@@ -53,6 +94,7 @@ header a:hover {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-family: "Poppins", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #search-button {
@@ -64,6 +106,7 @@ header a:hover {
   cursor: pointer;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #search-button:hover {
@@ -86,6 +129,7 @@ header a:hover {
   cursor: pointer;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #sort-newest:hover,
@@ -111,6 +155,7 @@ header a:hover {
   border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #prev-page:hover,
@@ -119,39 +164,74 @@ header a:hover {
 }
 
 .message {
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 15px;
+  padding: 15px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
+  background: rgba(255, 255, 255, 0.25); /* Lichte achtergrond voor berichten */
+  backdrop-filter: blur(10px); /* Dit creëert het glasachtige effect */
+  -webkit-backdrop-filter: blur(10px); /* Voor Safari ondersteuning */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .message:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.4);
   z-index: 2;
 }
 
 .message.gerard {
-  background-color: #dcf8c6;
+  background: rgba(
+    220,
+    248,
+    198,
+    0.6
+  ); /* Lichtgroene semi-transparante achtergrond */
 }
 
 .message.gerard:hover {
-  background-color: #e5fad4;
+  background: rgba(
+    220,
+    248,
+    198,
+    0.6
+  ); /* Lichtgroene semi-transparante achtergrond */
 }
 
 .message.nagelhout {
-  background-color: #ffffff;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); /* Witte semi-transparante achtergrond */
   margin-left: 1em; /* Dit verschuift de berichten van Nagelhout 1em naar rechts */
 }
 
 .message.nagelhout:hover {
-  background-color: #f8f8f8;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); /* Witte semi-transparante achtergrond */
+}
+
+.message.dark-mode {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Donkere achtergrond voor berichten in donkere modus */
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .sender {
@@ -178,6 +258,9 @@ header a:hover {
   margin-top: 5px;
   font-weight: 400;
   color: #333; /* Donkergrijs voor de inhoud, goed leesbaar op beide achtergronden */
+  max-width: 100%;
+  overflow-x: auto;
+  word-break: break-all; /* Sta toe dat URLs op elk punt afbreken */
 }
 
 .content a {
@@ -185,11 +268,16 @@ header a:hover {
   text-decoration: none; /* Verwijder de standaard onderstreping */
   border-bottom: 1px dotted currentColor; /* Voeg een subtiele stippellijn toe onder de link */
   transition: border-bottom 0.3s ease, opacity 0.3s ease; /* Soepele overgang voor hover effect */
+  color: #1a73e8; /* Standaard linkkleur */
 }
 
 .content a:hover {
   border-bottom: 1px solid currentColor; /* Maak de lijn doorgetrokken bij hover */
   opacity: 0.8; /* Maak de link iets lichter bij hover */
+}
+
+.content a.dark-mode {
+  color: #bb86fc; /* Linkkleur in donkere modus */
 }
 
 /* Als de link binnen een gemarkeerde zoekterm valt, pas de stijl aan */
@@ -202,23 +290,64 @@ header a:hover {
   text-decoration: underline; /* Voeg onderstreping toe bij hover binnen gemarkeerde tekst */
 }
 
+/* Algemene stijl voor knoppen */
+button {
+  border-radius: 20px; /* Standaard afgeronde hoeken */
+  transition: all 0.3s ease;
+  background-color: #98fb98; /* Standaard knopkleur */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Stijl voor zoekknop en sorteerknoppen */
+#search-button,
+#sort-newest,
+#sort-oldest {
+  border-radius: 15px; /* Iets minder rond voor grotere knoppen */
+}
+
+button.dark-mode {
+  background-color: #3e3e3e; /* Donkere knopkleur */
+  color: #ffffff; /* Witte tekst op knoppen in donkere modus */
+}
+
+/* Media query voor mobiele apparaten */
 @media (max-width: 768px) {
-  #sort-container {
-    flex-direction: column;
+  button {
+    border-radius: 25px; /* Nog rondere hoeken op mobiel */
   }
 
+  #search-button,
   #sort-newest,
   #sort-oldest {
-    margin-bottom: 10px;
-    flex-basis: auto;
+    border-radius: 20px; /* Rondere hoeken voor grotere knoppen op mobiel */
+    padding: 10px 15px; /* Iets meer padding voor betere touch targets */
   }
 
-  .message {
-    font-size: 14px;
+  /* Aanpassingen voor de navigatieknoppen */
+  #prev-page,
+  #next-page {
+    border-radius: 30px; /* Extra ronde hoeken voor navigatieknoppen */
+    padding: 12px 20px; /* Meer padding voor grotere touch targets */
+  }
+}
+
+/* Voor zeer kleine schermen */
+@media (max-width: 480px) {
+  button {
+    border-radius: 30px; /* Maximaal ronde hoeken voor zeer kleine schermen */
   }
 
-  .message .content {
-    max-width: 100%;
+  #search-button,
+  #sort-newest,
+  #sort-oldest {
+    border-radius: 25px;
+    padding: 8px 12px; /* Iets minder padding om ruimte te besparen */
+  }
+
+  #prev-page,
+  #next-page {
+    border-radius: 35px;
+    padding: 10px 15px;
   }
 }
 
@@ -231,4 +360,168 @@ header a:hover {
 .highlight {
   background-color: yellow; /* Of een andere kleur die je wilt gebruiken */
   font-weight: bold; /* Optioneel: maak de gemarkeerde tekst vetgedrukt */
+}
+
+/* Voor zeer kleine schermen */
+@media (max-width: 480px) {
+  #app-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .message {
+    padding: 8px;
+  }
+
+  .content {
+    font-size: 13px;
+  }
+}
+
+.dark-mode-toggle {
+  position: fixed; /* Zorg ervoor dat de knop altijd zichtbaar is */
+  top: 20px; /* Afstand van de bovenkant */
+  right: 20px; /* Afstand van de rechterkant */
+  z-index: 1000; /* Zorg ervoor dat de knop boven andere elementen staat */
+}
+
+.dark-mode-toggle button {
+  background-color: #98fb98; /* Standaard knopkleur */
+  border: none;
+  border-radius: 20px; /* Ronde hoeken */
+  padding: 10px 15px; /* Padding voor de knop */
+  cursor: pointer;
+  display: flex; /* Flexbox voor icon en tekst */
+  align-items: center; /* Center de inhoud verticaal */
+}
+
+.dark-mode-toggle button i {
+  margin-right: 5px; /* Ruimte tussen het icoon en de tekst */
+}
+
+.dark-mode-toggle button:hover {
+  background-color: #7cfc00; /* Hover kleur */
+}
+
+/* Donkere modus */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode #app-container {
+  background: rgba(30, 30, 30, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+body.dark-mode .message {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .message.gerard {
+  background: rgba(50, 100, 50, 0.3);
+}
+
+body.dark-mode .message.nagelhout {
+  background: rgba(50, 50, 100, 0.3);
+}
+
+body.dark-mode .sender {
+  color: #bb86fc;
+}
+
+body.dark-mode .datetime {
+  color: #a0a0a0;
+}
+
+body.dark-mode .content {
+  color: #e0e0e0;
+}
+
+body.dark-mode .content a {
+  color: #03dac6;
+  border-bottom: 1px dotted #03dac6;
+}
+
+body.dark-mode button {
+  background-color: #3700b3;
+  color: #ffffff;
+}
+
+body.dark-mode button:hover {
+  background-color: #5c21e6;
+}
+
+body.dark-mode #search-input {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-mode #search-input::placeholder {
+  color: #888;
+}
+
+body.dark-mode .highlight {
+  background-color: #ffd700;
+  color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    /* Donkere modus stijlen */
+  }
+}
+
+#starry-sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Zorg ervoor dat het geen interactie blokkeert */
+  z-index: -1; /* Zorg ervoor dat het achter andere elementen staat */
+  background: rgba(
+    18,
+    18,
+    18,
+    0.9
+  ); /* Donkere achtergrond voor de sterrenhemel */
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  opacity: 0.8;
+  animation: twinkle 1.5s infinite alternate; /* Twinkle effect */
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.falling-star {
+  position: absolute;
+  background: yellow;
+  width: 2px;
+  height: 10px;
+  animation: fall 1s forwards; /* Vallend effect */
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh); /* Laat het sterretje vallen */
+    opacity: 0;
+  }
 }
