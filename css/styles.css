@@ -1,0 +1,188 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  font-weight: 300; /* Licht gewicht voor de algemene tekst */
+}
+
+#app-container {
+  width: 30%;
+  min-width: 300px;
+  max-width: 500px;
+  margin: 40px auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+#controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500; /* Medium gewicht voor knoppen */
+  padding: 10px 15px;
+  background-color: #98fb98;
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #7cfc00;
+}
+
+#chat-container {
+  background-color: #e6e6e6;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.message {
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  transition: all 0.3s ease; /* Soepele overgang voor alle veranderingen */
+  position: relative; /* Nodig voor het z-index effect */
+  z-index: 1; /* Standaard z-index */
+}
+
+.message:hover {
+  transform: translateY(-3px) scale(1.02); /* Beweeg iets omhoog en vergroot licht */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Grotere schaduw voor 'verheven' effect */
+  z-index: 2; /* Breng het bericht naar voren */
+  background-color: rgba(255, 255, 255, 0.9); /* Licht de achtergrond op */
+}
+
+.message.gerard {
+  background-color: #dcf8c6;
+}
+
+.message.gerard:hover {
+  background-color: #e5fad4; /* Lichtere versie van de originele kleur */
+}
+
+.message.nagelhout {
+  background-color: #ffffff;
+}
+
+.message.nagelhout:hover {
+  background-color: #f8f8f8; /* Lichtere versie van de originele kleur */
+}
+
+.sender {
+  font-weight: 600; /* Iets dikker voor betere leesbaarheid */
+  margin-bottom: 5px;
+}
+
+.message.gerard .sender {
+  color: #2e7d32; /* Donkergroen, past goed bij de lichtgroene achtergrond */
+}
+
+.message.nagelhout .sender {
+  color: #1565c0; /* Donkerblauw, contrasteert goed met de witte achtergrond */
+}
+
+.datetime {
+  color: #666;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+  font-weight: 300; /* Licht gewicht voor de datum/tijd */
+}
+
+.content {
+  margin-top: 5px;
+  font-weight: 400; /* Regular gewicht voor de berichtinhoud */
+  color: #333; /* Donkergrijs voor de inhoud, goed leesbaar op beide achtergronden */
+}
+
+.message .content {
+  margin-top: 5px;
+  white-space: pre-wrap;
+}
+
+.message .content a {
+  color: inherit; /* Gebruik dezelfde kleur als de omringende tekst */
+  text-decoration: none; /* Verwijder de standaard onderstreping */
+  border-bottom: 1px dotted currentColor; /* Voeg een subtiele stippellijn toe onder de link */
+  padding-bottom: 1px; /* Kleine ruimte onder de tekst voor de stippellijn */
+  transition: border-bottom 0.3s ease, opacity 0.3s ease; /* Soepele overgang voor hover effect */
+}
+
+.message .content a:hover {
+  border-bottom: 1px solid currentColor; /* Verander naar een doorgetrokken lijn bij hover */
+  opacity: 0.7; /* Maak de link iets lichter bij hover */
+}
+
+/* Behoud de word-break voor lange URLs */
+.message .content a {
+  word-break: break-all;
+}
+
+@media (max-width: 768px) {
+  #app-container {
+    width: 95%;
+    margin: 20px auto;
+    padding: 10px;
+  }
+
+  #controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button {
+    margin-bottom: 10px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+
+  .message .content {
+    max-width: 100%;
+  }
+}
+
+/* Voeg dit toe aan je bestaande CSS */
+#load-previous,
+#load-more {
+  display: none;
+}
+
+#navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#prev-page,
+#next-page {
+  padding: 10px 15px;
+  background-color: #98fb98;
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#prev-page:hover,
+#next-page:hover {
+  background-color: #7cfc00;
+}
